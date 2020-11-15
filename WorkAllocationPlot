@@ -1,0 +1,13 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+pd.pivot_table(df,
+               values="Î£ Time Spent",
+               columns=["Custom field (Work Allocation)"],
+               index="Sprint",
+               fill_value=0,
+               aggfunc=[np.sum,], 
+               margins=True,
+               margins_name="Total")
+
+pd.crosstab(df['Sprint'],df['Custom field (Work Allocation)'],values=df['Î£ Time Spent'],aggfunc=np.sum,normalize='index',margins=True).plot(kind= 'bar').applymap(lambda x: "{0:.0f}%".format(100*x))
+plt.ylabel("Custom field (Work Allocation)")
